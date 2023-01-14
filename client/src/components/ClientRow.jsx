@@ -1,8 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useMutation } from "@apollo/client";
-import DELETE_CLIENT from "../mutations/clientMutations.js";
-import GET_CLIENTS from "../queries/clientQueries.js";
+import { DELETE_CLIENT } from "../mutations/clientMutations.js";
+import { GET_CLIENTS } from "../queries/clientQueries.js";
 
 function ClientRow({ client }) {
   const [deleteClient] = useMutation(DELETE_CLIENT, {

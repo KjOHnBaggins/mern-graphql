@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
 import ClientRow from "./ClientRow.jsx";
 import Spinner from "./Spinner.jsx";
-import GET_CLIENTS from "../queries/clientQueries.js";
+import { GET_CLIENTS } from "../queries/clientQueries.js";
 
 function Client() {
   const { loading, error, data } = useQuery(GET_CLIENTS);
