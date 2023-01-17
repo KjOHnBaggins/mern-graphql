@@ -3,23 +3,21 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useMutation } from "@apollo/client";
 import { DELETE_CLIENT } from "../mutations/clientMutations.js";
 import { GET_CLIENTS } from "../queries/clientQueries.js";
+import { GET_PROJECTS } from "../queries/projectQueries.js";
 
 function ClientRow({ client }) {
   const [deleteClient] = useMutation(DELETE_CLIENT, {
     variables: {
       id: client.id,
     },
-    update(cache, { data: { deleteClient } }) {
-      const { clients } = cache.readQuery({
+    refetchQueries: [
+      {
         query: GET_CLIENTS,
-      });
-      cache.writeQuery({
-        query: GET_CLIENTS,
-        data: {
-          clients: clients.filter((client) => client.id !== deleteClient.id),
-        },
-      });
-    },
+      },
+      {
+        query: GET_PROJECTS,
+      },
+    ],
   });
 
   return (
